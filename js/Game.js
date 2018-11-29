@@ -1,13 +1,26 @@
 
 class Game {
-    constructor () {
+    constructor (missed = 0, phrases = [
+        "just do it",
+        "go for it",
+        "one more",
+        "finish it",
+        "you can",
+        "come on",
+        "almost there",
+        "fail better",
+        "try more",
+        "work hard"
+    ]) {
         this.missed = missed;
         this.phrases = phrases;
     }
 
     // randomly retrieves one of the phrases stored in the phrases array.
     getRandomPhrase () {
+        let chosen_phrase =  this.phrases[Math.floor(Math.random() * this.phrases.length)];
 
+        return chosen_phrase
     }
 
     //checks to see if the button clicked by the player matches a letter in the phrase.
