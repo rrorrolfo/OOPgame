@@ -28,8 +28,11 @@ start_btn.addEventListener("click", () => {
 
 //event listener for the keyboard keys
 keyboard.addEventListener("click", (event) => {
-    
+
+    // letter clicked on the keyboard
+    const flag_letter = event.target;
+
     //checks if clicked letter on the keyboard is in the phrase
-    game_phrase.checkLetter();
+    game_phrase.checkLetter(flag_letter);
 
 });
