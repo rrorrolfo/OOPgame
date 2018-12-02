@@ -59,6 +59,21 @@ class Game {
         //Gets the amount of hidden letters
         const discovered_letters = document.querySelectorAll("li.hide.letter");
 
+        if (discovered_letters.length === 0) {
+            return true
+        }
+        
+        
+    }
+
+    //this method displays a message if the player wins or a different message if they lose.
+    gameOver () {
+
+        //Gets the amount of hidden letters
+        const discovered_letters = document.querySelectorAll("li.hide.letter");
+        //Gets amount of empty hearts
+        const lifes = document.querySelectorAll("img[src='images/lostHeart.png']");
+
         //If there are no hidden letters the victory message is shown
         if (discovered_letters.length === 0) {
 
@@ -66,18 +81,25 @@ class Game {
             start_btn.textContent = "Play again";
             overlay.className = "win";
             overlay.style.display = "flex";
+            title.style.display = "none";
+
+        } else if (lifes.length === 5) {
+
+            game__over_message.textContent = "YOU LOST :(";
+            start_btn.textContent = "Play again";
+            overlay.className = "lose";
+            overlay.style.display = "flex";
+            title.style.display = "none";
 
         }
-        
-    }
-
-    //this method displays a message if the player wins or a different message if they lose.
-    gameOver () {
 
     }
 
     //calls the getRandomPhrase() method, and adds that phrase to the board by calling the Phrase class' addPhraseToDisplay() method.
     startGame() {
-
+        //Creates new instance of a phrase (phrase object)
+        game_phrase = new Phrase(game.getRandomPhrase());
+        // Displays the hidden phrase to be guessed
+        phrase_to_guess.innerHTML = game_phrase.addPhraseToDisplay(game_phrase.phrase);
     }
 }

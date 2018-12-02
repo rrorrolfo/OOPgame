@@ -1,6 +1,7 @@
 // VARIABLES
 
 const overlay = document.querySelector("#overlay");
+const title = document.querySelector(".title");
 const start_btn = document.querySelector("#btn__reset");
 const phrase_to_guess = document.querySelector("#phrase ul");
 const keyboard = document.querySelector("#qwerty");
@@ -18,10 +19,8 @@ start_btn.addEventListener("click", () => {
     overlay.style.display = "none";
     //Creates new instance of a Game (game object)
     game = new Game();
-    //Creates new instance of a phrase (phrase object)
-    game_phrase = new Phrase(game.getRandomPhrase());
-    // Displays the hidden phrase to be guessed
-    phrase_to_guess.innerHTML = game_phrase.addPhraseToDisplay(game_phrase.phrase);
+    //Adds the phrase to the board
+    game.startGame();
 
 });
 
