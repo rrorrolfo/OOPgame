@@ -34,18 +34,19 @@ class Phrase {
     // flag_letter param is the letter clicked on the keyboard
     checkLetter (flag_letter) {
 
+        if (flag_letter.className === "key") {
+
             //hidden phrase to be compared against the chosen letter
         const flag_phrase = document.querySelectorAll(".letter");
-
-        if (flag_letter.className === "key") {
 
             //Iteration over the hidden phrase
             flag_phrase.forEach(letter => {
 
                 let letter_to_compare = letter.textContent;
 
-                //if the letters match, the letter will appear
+                //compares if letter match
                 if (letter_to_compare === flag_letter.textContent) {
+                //if the letters match, the letter will appear
                     this.showMatchedLetter(letter); 
                 }
             });
@@ -53,7 +54,7 @@ class Phrase {
     }
 
     //reveals the letter(s) on the board that matches player's selection.
-    //"item" param is the item that the class mut be changed from hide to show
+    //"item" param is the item that the class will be changed from hide to show
     showMatchedLetter (item) {
         //displays the matched letters
         item.className = "show letter";

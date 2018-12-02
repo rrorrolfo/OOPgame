@@ -4,6 +4,7 @@ const overlay = document.querySelector("#overlay");
 const start_btn = document.querySelector("#btn__reset");
 const phrase_to_guess = document.querySelector("#phrase ul");
 const keyboard = document.querySelector("#qwerty");
+const game__over_message = document.querySelector("#game-over-message");
 
 let game = "";
 let game_phrase = ""; 
@@ -32,7 +33,6 @@ keyboard.addEventListener("click", (event) => {
     // letter clicked on the keyboard
     const flag_letter = event.target;
 
-    //checks if clicked letter on the keyboard is in the phrase
-    game_phrase.checkLetter(flag_letter);
+    game.handleInteraction(flag_letter);
 
 });
