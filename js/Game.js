@@ -24,15 +24,25 @@ class Game {
     }
 
     //checks to see if the button clicked by the player matches a letter in the phrase.
-        //If it does not, then removeLife() method is called
+        
         //.If the selected letter matches,  showMatchedLetter() method is called on the phrase and then call the checkForWin() method.
     handleInteraction (flag_letter) {
 
+        
         //checks if clicked letter on the keyboard is in the phrase
-        game_phrase.checkLetter(flag_letter);
+        if (game_phrase.checkLetter(flag_letter)) {
+            this.checkForWin()
+            this.gameOver();
+        } else {
+            this.gameOver();
+        };
+        //If it does not, then removeLife() method is called
+        
+        
+        
     }
 
-    //removes a life, removes a heart from the board, and, if the player is out of lives, ends the game.
+    //removes a life, removes a heart from the board
     removeLife () {
 
         const lifes = document.querySelectorAll(".tries img");
@@ -71,8 +81,6 @@ class Game {
 
         //Gets the amount of hidden letters
         const discovered_letters = document.querySelectorAll("li.hide.letter");
-        //Gets amount of empty hearts
-        const lifes = document.querySelectorAll("img[src='images/lostHeart.png']");
 
         //If there are no hidden letters the victory message is shown
         if (discovered_letters.length === 0) {
@@ -83,7 +91,8 @@ class Game {
             overlay.style.display = "flex";
             title.style.display = "none";
 
-        } else if (lifes.length === 5) {
+            //IF there are 5 mistakes the game is lost
+        } else if (this.missed === 5) {
 
             game__over_message.textContent = "YOU LOST :(";
             start_btn.textContent = "Play again";

@@ -34,7 +34,7 @@ class Phrase {
     // flag_letter param is the letter clicked on the keyboard
     checkLetter (flag_letter) {
 
-        if (flag_letter.className === "key") {
+        let flag = 0;
 
             //hidden phrase to be compared against the chosen letter
         const flag_phrase = document.querySelectorAll(".letter");
@@ -42,15 +42,27 @@ class Phrase {
             //Iteration over the hidden phrase
             flag_phrase.forEach(letter => {
 
+                let x = letter;
                 let letter_to_compare = letter.textContent;
 
                 //compares if letter match
                 if (letter_to_compare === flag_letter.textContent) {
                 //if the letters match, the letter will appear
                     this.showMatchedLetter(letter); 
-                }
+                    //The selected letter will be decorated
+                    flag_letter.className = "key chosen";
+                    //Will add one if there is match
+                    flag += 1;
+                } 
             });
+
+
+        //If there has been no match a missed will be added
+        if (flag === 0) {
+            game.missed += 1;
+            flag_letter.className = "key wrong"
         }
+
     }
 
     //reveals the letter(s) on the board that matches player's selection.

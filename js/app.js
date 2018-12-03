@@ -15,12 +15,7 @@ let game_phrase = "";
 //event listener for start game button 
 start_btn.addEventListener("click", () => {
 
-    //Hides overlay when start button is clicked
-    overlay.style.display = "none";
-    //Creates new instance of a Game (game object)
-    game = new Game();
-    //Adds the phrase to the board
-    game.startGame();
+    resetDisplay();
 
 });
 
@@ -32,6 +27,39 @@ keyboard.addEventListener("click", (event) => {
     // letter clicked on the keyboard
     const flag_letter = event.target;
 
-    game.handleInteraction(flag_letter);
+    //If the target is a letter on the keyboard the markbutton function is called
+    if (flag_letter.className === "key") {
+
+    markButton(flag_letter);
+    
+    }
 
 });
+
+
+//
+
+const markButton = (flag_letter) => {
+
+    //Disables the clicked key on the keyboard
+    /////// CHECK THIS FOR DISABKING THE BUTTON flag_letter.setAttribute = ("disabled", true);
+    //Calls the method that will asses the selection of the letter
+    game.handleInteraction(flag_letter);
+    
+}
+
+// 
+
+const resetDisplay = () => {
+
+    //Resets decoration of all keyboard keys
+    const letters = document.querySelectorAll(".key");
+    letters.forEach(letter => letter.className = "key");
+    //Hides overlay when start button is clicked
+    overlay.style.display = "none";
+    //Creates new instance of a Game (game object)
+    game = new Game();
+    //Adds the phrase to the board
+    game.startGame();
+
+}
