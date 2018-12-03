@@ -60,6 +60,7 @@ class Phrase {
         //If there has been no match a missed will be added
         if (flag === 0) {
             game.missed += 1;
+            //Selected letter will be decorated with red color
             flag_letter.className = "key wrong"
         }
 

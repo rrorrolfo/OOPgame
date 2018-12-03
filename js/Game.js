@@ -27,18 +27,15 @@ class Game {
         
         //.If the selected letter matches,  showMatchedLetter() method is called on the phrase and then call the checkForWin() method.
     handleInteraction (flag_letter) {
-
         
         //checks if clicked letter on the keyboard is in the phrase
-        if (game_phrase.checkLetter(flag_letter)) {
-            this.checkForWin()
+            game_phrase.checkLetter(flag_letter);
+        //cheks if the player has won
+            this.checkForWin();
+        //removes lifes if necessary
+            this.removeLife();
+        //displays respective win/lose message
             this.gameOver();
-        } else {
-            this.gameOver();
-        };
-        //If it does not, then removeLife() method is called
-        
-        
         
     }
 
@@ -47,7 +44,7 @@ class Game {
 
         const lifes = document.querySelectorAll(".tries img");
 
-        for (let i = 0; i <lifes.length; i += 1) {
+        for (let i = 0; i <game.missed ; i += 1) {
 
             const x = lifes[i].getAttribute("src");
 
@@ -69,8 +66,11 @@ class Game {
         //Gets the amount of hidden letters
         const discovered_letters = document.querySelectorAll("li.hide.letter");
 
+        //checks if the game has been won returning boolean value
         if (discovered_letters.length === 0) {
             return true
+        } else {
+            return false
         }
         
         

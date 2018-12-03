@@ -42,7 +42,7 @@ keyboard.addEventListener("click", (event) => {
 const markButton = (flag_letter) => {
 
     //Disables the clicked key on the keyboard
-    /////// CHECK THIS FOR DISABKING THE BUTTON flag_letter.setAttribute = ("disabled", true);
+    flag_letter.setAttribute = ("disabled");
     //Calls the method that will asses the selection of the letter
     game.handleInteraction(flag_letter);
     
@@ -54,7 +54,13 @@ const resetDisplay = () => {
 
     //Resets decoration of all keyboard keys
     const letters = document.querySelectorAll(".key");
-    letters.forEach(letter => letter.className = "key");
+        letters.forEach(letter => {
+            letter.className = "key";
+            
+        });
+    //Resets to five lifes
+    const lifes = document.querySelectorAll(".tries img");
+        lifes.forEach(item => item.setAttribute("src", "images/liveHeart.png"));
     //Hides overlay when start button is clicked
     overlay.style.display = "none";
     //Creates new instance of a Game (game object)
