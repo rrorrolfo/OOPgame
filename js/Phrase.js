@@ -38,6 +38,8 @@ class Phrase {
 
             //hidden phrase to be compared against the chosen letter
         const flag_phrase = document.querySelectorAll(".letter");
+            //selects all keys
+        const letters = document.querySelectorAll(".key");
 
             //Iteration over the hidden phrase
             flag_phrase.forEach(letter => {
@@ -46,11 +48,15 @@ class Phrase {
                 let letter_to_compare = letter.textContent;
 
                 //compares if letter match
-                if (letter_to_compare === flag_letter.textContent) {
+                if (letter_to_compare === flag_letter) {
                 //if the letters match, the letter will appear
                     this.showMatchedLetter(letter); 
                     //The selected letter will be decorated
-                    flag_letter.className = "key chosen";
+                    for (let i = 0; i < letters.length; i +=1) {
+                        if (letters[i].textContent === flag_letter) {
+                            letters[i].className = "key chosen";
+                        }
+                    }
                     //Will add one if there is match
                     flag += 1;
                 } 
@@ -61,7 +67,11 @@ class Phrase {
         if (flag === 0) {
             game.missed += 1;
             //Selected letter will be decorated with red color
-            flag_letter.className = "key wrong"
+            for (let i = 0; i < letters.length; i +=1) {
+                if (letters[i].textContent === flag_letter) {
+                    letters[i].className = "key wrong";
+                }
+            }
         }
 
     }

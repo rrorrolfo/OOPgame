@@ -24,25 +24,38 @@ start_btn.addEventListener("click", () => {
 //event listener for the keyboard keys
 keyboard.addEventListener("click", (event) => {
 
-    // letter clicked on the keyboard
-    const flag_letter = event.target;
+    
+    
 
     //If the target is a letter on the keyboard the markbutton function is called
-    if (flag_letter.className === "key") {
+    if (event.target.className === "key") {
 
-    markButton(flag_letter);
+    // letter clicked on the keyboard
+    const flag_letter = event.target.textContent;
+
+        markButton(flag_letter);
     
     }
 
 });
 
+window.addEventListener("keyup", (event) => {
+
+    // letter clicked on the keyboard
+    const flag_letter = event.key;
+
+    //markbutton function is called
+
+    markButton(flag_letter);
+    
+});
 
 //
 
 const markButton = (flag_letter) => {
 
     //Disables the clicked key on the keyboard
-    flag_letter.setAttribute = ("disabled");
+    flag_letter.setAttribute = ("disabled", "");
     //Calls the method that will asses the selection of the letter
     game.handleInteraction(flag_letter);
     
@@ -56,7 +69,7 @@ const resetDisplay = () => {
     const letters = document.querySelectorAll(".key");
         letters.forEach(letter => {
             letter.className = "key";
-            
+            letter.removeAttribute("disabled");
         });
     //Resets to five lifes
     const lifes = document.querySelectorAll(".tries img");
