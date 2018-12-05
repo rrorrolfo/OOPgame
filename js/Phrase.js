@@ -38,8 +38,6 @@ class Phrase {
 
             //hidden phrase to be compared against the chosen letter
         const flag_phrase = document.querySelectorAll(".letter");
-            //selects all keys
-        const letters = document.querySelectorAll(".key");
 
             //Iteration over the hidden phrase
             flag_phrase.forEach(letter => {
